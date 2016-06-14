@@ -20,8 +20,7 @@ class Transfer
   end
 
   def execute_transaction
-    if self.valid? && run_transfer == 0 && self.balance_validation
-      @run_transfer += 1 
+    if self.valid? && self.status == "pending" && self.balance_validation 
       self.sender_after = (self.sender.balance -= amount)  
       self.receiver_after = (self.receiver.balance += amount)
       self.status = "complete" 
